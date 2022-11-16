@@ -45,9 +45,15 @@ class MainMenuFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    //Recyclerview
+    private var layoutManager: RecyclerView.LayoutManager? = null
+    private var adapter: RecyclerView.Adapter<DeviceAdapter.DeviceViewHolder>? = null
+
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?): View? {
+        //Inflate layout for recyclerview
+        inflater.inflate(R.layout.main_menu_fragment, container, false)
 
         _binding = MainMenuFragmentBinding.inflate(inflater, container, false)
         binding.textView.text = todMessage()
@@ -58,9 +64,18 @@ class MainMenuFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.deviceListRecyclerView.apply {
+            // set a LinearLayoutManager to handle Android
+            // RecyclerView behavior
+            layoutManager = LinearLayoutManager(activity)
+            // set the custom adapter to the RecyclerView
+            adapter = DeviceAdapter {device -> adapterOnClick(device)}
+        }
+
         binding.fab.setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
+
     }
 
 
@@ -73,5 +88,10 @@ class MainMenuFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    /* Opens DeviceControlFragment when RecyclerView item is clicked. */
+    private fun adapterOnClick(device: Device) {
+        //findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
     }
 }

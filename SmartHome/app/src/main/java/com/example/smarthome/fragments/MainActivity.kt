@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
 
+    //Recycler View
     private val newDeviceActivityRequestCode = 1
     private val deviceListViewModel by viewModels<DeviceListViewModel> {
         DevicesListViewModelFactory(this)
@@ -33,7 +34,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
 
         //set status bar to black
         val window = this.window
