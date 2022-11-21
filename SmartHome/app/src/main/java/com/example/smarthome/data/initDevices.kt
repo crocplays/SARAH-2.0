@@ -10,7 +10,14 @@ fun deviceList(resources: Resources): List<Device>{
             deviceType = 1,
             deviceIcon = R.drawable.lights,
             deviceName = "Adi Ceiling Lights",
-            deviceDescreption = "Dimmer Lights In Adi's Room"
+            deviceDescription = "Dimmer Lights In Adi's Room"
+        ),
+        Device(
+            deviceId = 2,
+            deviceType = 2,
+            deviceIcon = R.drawable.lights,
+            deviceName = "Eden Ceiling Lights",
+            deviceDescription = "Toggle Lights In Eden's Room"
         )
 
 

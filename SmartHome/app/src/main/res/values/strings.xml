@@ -4,21 +4,19 @@
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">Manage Devices </string>
     <string name="second_fragment_label">Edit Device </string>
-    <string name="device_fragment_label">Control Device</string>
+    <string name="dimmer_device_fragment_label">Control Dimmer Device</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="done_button">Done</string>
     <string name="cancel_button">Cancel</string>
 
 
     <string-array name="Devices">
-        <item>Light(dimm)</item>
+        <item>Light(dimmer)</item>
     </string-array>
 
-    <string-array name="Descreption">
+    <string-array name="Description">
         <item>Dimmable Light</item>
     </string-array>
 

@@ -8,7 +8,7 @@ class Device(
     @DrawableRes
     var deviceIcon : Int? ,
     var deviceName : String ,
-    var deviceDescreption : String
+    var deviceDescription : String
 
     ) {
 

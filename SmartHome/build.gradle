@@ -5,6 +5,13 @@ plugins {
     id 'org.jetbrains.kotlin.android' version '1.5.30' apply false
 }
 
+dependencies {
+//    implementation  'com.github.nkzawa:socket.io-client:0.6.0'
+
+
+
+}
+
 task clean(type: Delete) {
     delete rootProject.buildDir
 }

@@ -6,21 +6,27 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smarthome.R
 import com.example.smarthome.data.Device
 import com.example.smarthome.databinding.MainMenuFragmentBinding
+import com.example.smarthome.fragments.MainActivity
+import com.example.smarthome.data.DataSource
 import java.util.*
+
 
 
 /**
  * First Fragment - Main Menu
  */
 
+const val DEVICE_ID = "device id"
 
 class MainMenuFragment : Fragment() {
 
@@ -45,18 +51,43 @@ class MainMenuFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    private var tod : String = todMessage()
     //Recyclerview
-    private var layoutManager: RecyclerView.LayoutManager? = null
-    private var adapter: RecyclerView.Adapter<DeviceAdapter.DeviceViewHolder>? = null
+//    private var layoutManager: RecyclerView.LayoutManager? = null
+//    private var adapter: RecyclerView.Adapter<DeviceAdapter.DeviceViewHolder>? = null
+//
+    private val newDeviceActivityRequestCode = 1
+    private val  deviceListViewModel by viewModels<DeviceListViewModel> {
+        try {
+            DevicesListViewModelFactory(requireContext())
+
+        }
+        catch (e : IllegalStateException ){
+
+            tod = "requireContext Exception"
+            throw e
+        }
+
+    }
+
+
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+    }
+
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?): View? {
+
         //Inflate layout for recyclerview
         inflater.inflate(R.layout.main_menu_fragment, container, false)
 
         _binding = MainMenuFragmentBinding.inflate(inflater, container, false)
-        binding.textView.text = todMessage()
+        //Time of day message
+        //binding.textView.text = tod
 
         return binding.root
     }
@@ -64,13 +95,23 @@ class MainMenuFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.deviceListRecyclerView.apply {
-            // set a LinearLayoutManager to handle Android
-            // RecyclerView behavior
-            layoutManager = LinearLayoutManager(activity)
-            // set the custom adapter to the RecyclerView
-            adapter = DeviceAdapter {device -> adapterOnClick(device)}
+        /* Instantiates DeviceAdapter.  adapters are added to concatAdapter.
+        which displays the contents sequentially */
+        val headerAdapter = HeaderAdapter()
+        val deviceAdapter = DeviceAdapter { device -> adapterOnClick(device) }
+        val concatAdapter = ConcatAdapter(headerAdapter, deviceAdapter)
+
+        binding.deviceListRecyclerView.adapter = concatAdapter
+        binding.deviceListRecyclerView.layoutManager = LinearLayoutManager(activity,LinearLayoutManager.VERTICAL,false)
+
+        deviceListViewModel.deviceLiveData.observe(viewLifecycleOwner) {
+            it?.let {
+                deviceAdapter.submitList(it as MutableList<Device>)
+                headerAdapter.updateHeaderText(tod)
+            }
         }
+
+
 
         binding.fab.setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
@@ -81,8 +122,7 @@ class MainMenuFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        binding.textView.text = todMessage()
-
+        //binding.textView.text = tod
     }
 
     override fun onDestroyView() {
@@ -92,6 +132,18 @@ class MainMenuFragment : Fragment() {
 
     /* Opens DeviceControlFragment when RecyclerView item is clicked. */
     private fun adapterOnClick(device: Device) {
-        //findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+        try {
+        when(device.deviceType) {
+            1 -> findNavController().navigate(R.id.action_FirstFragment_to_DimmerDeviceFragment)
+            2 -> findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+            3 -> findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+            else -> {
+                throw Exception("device type error")
+            }
+        }
+        }
+        catch (e : Exception){
+
+        }
     }
 }

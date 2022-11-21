@@ -10,30 +10,33 @@
         android:name="com.example.smarthome.deviceList.MainMenuFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/main_menu_fragment">
-
-
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
             app:destination="@id/SecondFragment" />
+        <action
+            android:id="@+id/action_FirstFragment_to_DimmerDeviceFragment"
+            app:destination="@id/DimmerDeviceFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/SecondFragment"
         android:name="com.example.smarthome.fragments.DeviceCreationFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/device_creation_fragment">
-
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
     </fragment>
+
     <fragment
-        android:id="@+id/DeviceFragment"
-        android:name="com.example.smarthome.fragments.DeviceControlFragment"
-        android:label="@string/device_fragment_label"
+        android:id="@+id/DimmerDeviceFragment"
+        android:name="com.example.smarthome.fragments.DimmerDeviceControlFragment"
+        android:label="@string/dimmer_device_fragment_label"
         tools:layout="@layout/device_control_layout">
         <action
-            android:id="@+id/action_deviceControl_to_mainMenuFragment"
+            android:id="@+id/action_dimmer_device_control_to_mainMenuFragment"
             app:destination="@id/FirstFragment"/>
-
     </fragment>
+
+
 </navigation>

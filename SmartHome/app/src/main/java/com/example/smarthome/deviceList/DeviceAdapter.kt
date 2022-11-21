@@ -36,7 +36,7 @@ class DeviceAdapter (private val onClick: (Device) -> Unit) :
             currentDevice = device
 
             deviceTitleTextView.text = device.deviceName
-            deviceDescTextView.text = device.deviceDescreption
+            deviceDescTextView.text = device.deviceDescription
 
             if (device.deviceIcon != null) {
                 deviceImageView.setImageResource(device.deviceIcon!!)

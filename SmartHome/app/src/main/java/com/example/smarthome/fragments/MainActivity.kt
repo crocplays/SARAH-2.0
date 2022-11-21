@@ -2,17 +2,18 @@ package com.example.smarthome.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import android.view.WindowManager
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
-import android.view.Menu
-import android.view.MenuItem
-import android.view.WindowManager
-import androidx.activity.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smarthome.R
+import com.example.smarthome.data.DataSource
 import com.example.smarthome.data.Device
 import com.example.smarthome.databinding.ActivityMainBinding
 import com.example.smarthome.deviceList.DeviceAdapter
@@ -27,10 +28,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     //Recycler View
-    private val newDeviceActivityRequestCode = 1
-    private val deviceListViewModel by viewModels<DeviceListViewModel> {
-        DevicesListViewModelFactory(this)
-    }
+//    private val newDeviceActivityRequestCode = 1
+//    private val deviceListViewModel by viewModels<DeviceListViewModel> {
+//        DevicesListViewModelFactory(this)
+//    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,15 +50,15 @@ class MainActivity : AppCompatActivity() {
 
         /* Instantiates DeviceAdapter.  adapters are added to concatAdapter.
             which displays the contents sequentially */
-        val deviceAdapter = DeviceAdapter { device -> adapterOnClick(device) }
-        val recyclerView: RecyclerView = findViewById(R.id.device_list_recycler_view)
-        recyclerView.adapter = deviceAdapter
-
-        deviceListViewModel.deviceLiveData.observe(this) {
-            it?.let {
-                deviceAdapter.submitList(it as MutableList<Device>)
-            }
-        }
+//        val deviceAdapter = DeviceAdapter { device -> adapterOnClick(device) }
+//        val recyclerView: RecyclerView = findViewById(R.id.device_list_recycler_view)
+//        recyclerView.adapter = deviceAdapter
+//
+//        deviceListViewModel.deviceLiveData.observe(this) {
+//            it?.let {
+//                deviceAdapter.submitList(it as MutableList<Device>)
+//            }
+//        }
 
 
         val navController = findNavController(R.id.nav_host_fragment_content_main)
@@ -90,8 +91,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     /* Opens DeviceControlFragment when RecyclerView item is clicked. */
-    private fun adapterOnClick(device: Device) {
-        TODO("add navigation to individual device page")
-    }
+//    private fun adapterOnClick(device: Device) {
+//
+//    }
 
 }
