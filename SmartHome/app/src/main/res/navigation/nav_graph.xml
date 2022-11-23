@@ -32,10 +32,14 @@
         android:id="@+id/DimmerDeviceFragment"
         android:name="com.example.smarthome.fragments.DimmerDeviceControlFragment"
         android:label="@string/dimmer_device_fragment_label"
-        tools:layout="@layout/device_control_layout">
+        tools:layout="@layout/dimmer_device_control">
+
         <action
             android:id="@+id/action_dimmer_device_control_to_mainMenuFragment"
             app:destination="@id/FirstFragment"/>
+        <argument
+            android:name="device"
+            app:argType="com.example.smarthome.data.Device" />
     </fragment>
 
 

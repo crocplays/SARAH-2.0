@@ -18,6 +18,7 @@ import com.example.smarthome.data.Device
 import com.example.smarthome.databinding.MainMenuFragmentBinding
 import com.example.smarthome.fragments.MainActivity
 import com.example.smarthome.data.DataSource
+import com.example.smarthome.fragments.DimmerDeviceControlFragmentDirections
 import java.util.*
 
 
@@ -60,20 +61,13 @@ class MainMenuFragment : Fragment() {
     private val  deviceListViewModel by viewModels<DeviceListViewModel> {
         try {
             DevicesListViewModelFactory(requireContext())
-
+            
         }
         catch (e : IllegalStateException ){
 
             tod = "requireContext Exception"
             throw e
         }
-
-    }
-
-
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
 
     }
 
@@ -134,9 +128,18 @@ class MainMenuFragment : Fragment() {
     private fun adapterOnClick(device: Device) {
         try {
         when(device.deviceType) {
-            1 -> findNavController().navigate(R.id.action_FirstFragment_to_DimmerDeviceFragment)
-            2 -> findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
-            3 -> findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+            1 -> {  //dimmer type
+                val action = MainMenuFragmentDirections.actionFirstFragmentToDimmerDeviceFragment(device)
+                findNavController().navigate(action)}
+
+            2 -> { //toggle type
+                findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+            }
+
+            3 -> {
+                findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+            }
+
             else -> {
                 throw Exception("device type error")
             }
