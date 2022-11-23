@@ -5,11 +5,13 @@
     <string name="first_fragment_label">Manage Devices </string>
     <string name="second_fragment_label">Edit Device </string>
     <string name="dimmer_device_fragment_label">Control Dimmer Device</string>
+    <string name="toggle_device_fragment_label">Control Toggle Device</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
     <string name="done_button">Done</string>
     <string name="cancel_button">Cancel</string>
+    <string name="switchText">Status:</string>
 
 
     <string-array name="Devices">

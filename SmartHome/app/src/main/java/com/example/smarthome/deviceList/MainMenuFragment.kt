@@ -130,10 +130,12 @@ class MainMenuFragment : Fragment() {
         when(device.deviceType) {
             1 -> {  //dimmer type
                 val action = MainMenuFragmentDirections.actionFirstFragmentToDimmerDeviceFragment(device)
-                findNavController().navigate(action)}
+                findNavController().navigate(action)
+            }
 
             2 -> { //toggle type
-                findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+                val action = MainMenuFragmentDirections.actionFirstFragmentToToggleDeviceFragment(device)
+                findNavController().navigate(action)
             }
 
             3 -> {

@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_FirstFragment_to_DimmerDeviceFragment"
             app:destination="@id/DimmerDeviceFragment" />
+        <action
+            android:id="@+id/action_FirstFragment_to_ToggleDeviceFragment"
+            app:destination="@id/ToggleDeviceFragment" />
     </fragment>
 
     <fragment
@@ -42,5 +45,17 @@
             app:argType="com.example.smarthome.data.Device" />
     </fragment>
 
+    <fragment
+        android:id="@+id/ToggleDeviceFragment"
+        android:name="com.example.smarthome.fragments.ToggleDeviceControlFragment"
+        android:label="@string/toggle_device_fragment_label"
+        tools:layout="@layout/toggle_device_control">
+        <action
+            android:id="@+id/action_toggle_device_control_to_mainMenuFragment"
+            app:destination="@id/FirstFragment"/>
+        <argument
+            android:name="device"
+            app:argType="com.example.smarthome.data.Device" />
+    </fragment>
 
 </navigation>
