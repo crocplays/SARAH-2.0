@@ -19,6 +19,10 @@ class DimmerDeviceControlFragment : Fragment() {
     //Access to chosen device in fragment
     private val args : DimmerDeviceControlFragmentArgs by navArgs()
 
+    //  Server and Client
+    private var server = (activity as MainActivity).server
+    private var client = (activity as  MainActivity).client
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -28,6 +32,7 @@ class DimmerDeviceControlFragment : Fragment() {
         val deviceDesc = args.device.deviceDescription
         val deviceId = args.device.deviceId
         val deviceIcon = args.device.deviceIcon
+
 
         val powerLevel = binding.seekBarPowerLevel.progress
         binding.textViewPowerLevel.text = "Power level is at: $powerLevel"
@@ -43,6 +48,7 @@ class DimmerDeviceControlFragment : Fragment() {
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
                 // here, you react to the value being set in seekBar
                 binding.textViewPowerLevel.text = "Power level is at: $progress"
+                client.write(("$deviceId:$progress").toByteArray())
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar) {
