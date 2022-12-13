@@ -65,4 +65,8 @@ class Server(): Thread() {
             ex.printStackTrace()
         }
     }
+
+    fun isConnected(): Boolean {
+        return socket.isConnected
+    }
 }

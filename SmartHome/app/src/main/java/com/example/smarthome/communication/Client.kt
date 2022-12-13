@@ -26,6 +26,10 @@ class Client(hostAddress: InetAddress) : Thread() {
         }
     }
 
+    fun isConnected() : Boolean{
+        return socket.isConnected
+    }
+
     override fun run() {
         try {
             socket = Socket()

@@ -17,8 +17,8 @@ class ToggleDeviceControlFragment : Fragment() {
     private val args : ToggleDeviceControlFragmentArgs by navArgs()
 
     //  Server and Client
-    private var server = (activity as MainActivity).server
-    private var client = (activity as  MainActivity).client
+    //private var server = (activity as MainActivity).server
+    //private var client = (activity as  MainActivity).client
 
     
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -41,7 +41,7 @@ class ToggleDeviceControlFragment : Fragment() {
         binding.switchDevicePower.setOnCheckedChangeListener { buttonView, isChecked ->
             // do something, the isChecked will be true if the switch is in the On position
             binding.textViewStatus.text = "Status: $isChecked"
-            client.write("$deviceId:$isChecked".toByteArray())
+            (activity as MainActivity).client.write("$deviceId:$isChecked".toByteArray())
         }
 
         return binding.root

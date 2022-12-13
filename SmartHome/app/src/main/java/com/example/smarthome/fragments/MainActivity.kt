@@ -53,6 +53,7 @@ class MainActivity : AppCompatActivity() {
         //  server and client init
         server = Server()
         client = Client(InetAddress.getByName("192.168.1.214"))
+        client.start()
 
 
         val navController = findNavController(R.id.nav_host_fragment_content_main)
