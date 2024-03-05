@@ -1,26 +1,16 @@
 package com.example.smarthome.fragments
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.WindowManager
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.recyclerview.widget.RecyclerView
 import com.example.smarthome.R
-import com.example.smarthome.communication.Client
-import com.example.smarthome.communication.Server
-import com.example.smarthome.data.DataSource
-import com.example.smarthome.data.Device
 import com.example.smarthome.databinding.ActivityMainBinding
-import com.example.smarthome.deviceList.DeviceAdapter
-import com.example.smarthome.deviceList.DeviceListViewModel
-import com.example.smarthome.deviceList.DevicesListViewModelFactory
 import java.net.InetAddress
 
 const val DEVICE_ID = "device id"
@@ -29,10 +19,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
-
-    //  Communication
-    public lateinit var server : Server
-    public lateinit var client: Client
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,11 +35,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
-
-        //  server and client init
-        server = Server()
-        client = Client(InetAddress.getByName("192.168.1.214"))
-        client.start()
 
 
         val navController = findNavController(R.id.nav_host_fragment_content_main)

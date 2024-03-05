@@ -1,0 +1,11 @@
+[Unit]
+Description=SARAH Smart Home Server
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 /opt/sarah/main.py
+WorkingDirectory=/opt/sarah/
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

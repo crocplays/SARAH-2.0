@@ -1,0 +1,10 @@
+devices:
+  adi_light_dimmer:
+    name: adi_light_dimmer
+    type: dimmer
+    id: 1
+  
+  eden_rgb_bulb:
+    name: eden_rgb_bulb
+    type: rgb_bulb
+    id: 2

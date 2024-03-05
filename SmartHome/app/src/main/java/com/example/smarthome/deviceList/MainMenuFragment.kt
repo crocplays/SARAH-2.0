@@ -89,13 +89,6 @@ class MainMenuFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        if ((activity as MainActivity).client.isConnected()){
-//            tod = "Connected"
-//        }
-//        else{
-//            tod = "Not Connected"
-//        }
-
         /* Instantiates DeviceAdapter.  adapters are added to concatAdapter.
         which displays the contents sequentially */
         val headerAdapter = HeaderAdapter()

@@ -15,7 +15,8 @@
 
 
     <!-- Strings used for communications -->
-    <string name="server_ip">192.168.1.214</string>
+    <string name="server_ip">192.168.1.105</string>
+    <integer name="server_port">8888</integer>
 
 
     <string-array name="Devices">
